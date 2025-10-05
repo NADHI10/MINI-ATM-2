@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini ATM</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      background: #111; 
+      color: white; 
+      text-align: center; 
+      padding: 50px;
+    }
+    .card {
+      background: #222;
+      border-radius: 12px;
+      padding: 30px;
+      width: 320px;
+      margin: auto;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 6px;
+      border: none;
+    }
+    button {
+      background: #0f62fe;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0353e9;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Mini ATM</h2>
+    
+    <!-- Login Screen -->
+    <div id="login">
+      <p>Enter PIN:</p>
+      <input type="password" id="pin" />
+      <br>
+      <button onclick="login()">Login</button>
+      <p id="error" style="color:red;"></p>
+    </div>
+
+    <!-- ATM Screen -->
+    <div id="atm" style="display:none;">
+      <p id="balance">Balance: Rs.10000</p>
+      <input type="number" id="amount" placeholder="Enter amount" />
+      <br>
+      <button onclick="deposit()">Deposit</button>
+      <button onclick="withdraw()">Withdraw</button>
+      <br><br>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <!-- link JavaScript file -->
+  <script src="atm.js"></script>
+</body>
+</html>

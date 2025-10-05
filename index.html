@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mini ATM Simulator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+    .card {
+      background: #222;
+      border-radius: 12px;
+      padding: 30px;
+      width: 300px;
+      margin: auto;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 8px;
+      border: none;
+    }
+    button {
+      background: #0f62fe;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0353e9;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Mini ATM</h2>
+    <div id="login">
+      <p>Enter PIN:</p>
+      <input type="password" id="pin" />
+      <br>
+      <button onclick="login()">Login</button>
+      <p id="error" style="color:red;"></p>
+    </div>
+
+    <div id="atm" style="display:none;">
+      <p id="balance">Balance: Rs.10000</p>
+      <input type="number" id="amount" placeholder="Enter amount" />
+      <br>
+      <button onclick="deposit()">Deposit</button>
+      <button onclick="withdraw()">Withdraw</button>
+      <br><br>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <script>
+    let balance = 10000;
+    const pinCode = "1234";
+
+    function login() {
+      const enteredPin = document.getElementById("pin").value;
+      if (enteredPin === pinCode) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("atm").style.display = "block";
+      } else {
+        document.getElementById("error").innerText = "Invalid PIN!";
+      }
+    }
+
+    function deposit() {
+      const amt = parseInt(document.getElementById("amount").value);
+      if (amt > 0) {
+        balance += amt;
+        updateBalance();
+      }
+    }
+
+    function withdraw() {
+      const amt = parseInt(document.getElementById("amount").value);
+      if (amt > 0 && amt <= balance) {
+        balance -= amt;
+        updateBalance();
+      } else {
+        alert("Insufficient balance!");
+      }
+    }
+
+    function updateBalance() {
+      document.getElementById("balance").innerText = "Balance: Rs." + balance;
+      document.getElementById("amount").value = "";
+    }
+
+    function logout() {
+      document.getElementById("atm").style.display = "none";
+      document.getElementById("login").style.display = "block";
+      document.getElementById("pin").value = "";
+      document.getElementById("error").innerText = "";
+    }
+  </script>
+</body>
+</html>
